@@ -1,32 +1,64 @@
-# Balanced Brackets in C
+# C Problem Solutions
 
-A small C11 command-line solution that checks whether (), [], and {} are correctly balanced and properly nested.
+Three standalone C11 programs solving common programming problems. Each source file has its own `main` function and should be compiled separately.
 
-## Problem
+## 1. Balanced brackets — `balanced_brackets.c`
 
-Read one line of text. Ignore characters other than brackets. Print YES when every opening bracket has a matching closing bracket in the correct order; otherwise print NO. An empty line is balanced.
-
-Examples:
+Checks whether (), [], and {} are balanced and nested in the right order. Non-bracket characters are ignored; an empty line is balanced.
 
 | Input | Output |
 | --- | --- |
 | {[()]} | YES |
 | ([)] | NO |
-| hello | YES |
 
-## Build and run
-
-Use a C11 compiler such as GCC:
-
-~~~
+~~~sh
 gcc -std=c11 -Wall -Wextra -pedantic balanced_brackets.c -o balanced_brackets
 printf '{[()]}\n' | ./balanced_brackets
 ~~~
 
-The program accepts up to 4,095 characters on its input line.
+The input line may contain up to 4,095 characters. The solution uses a stack and runs in O(n) time and O(n) space.
 
-## Approach
+## 2. Palindrome checker — `palindrome.c`
 
-Each opening bracket is pushed onto a stack. For every closing bracket, the program checks the top of the stack and rejects a missing or mismatched pair immediately. It accepts the input only when the stack is empty at the end. Other characters are ignored.
+Checks whether the input line reads the same forward and backward after ignoring spaces, punctuation, and letter case. It prints YES or NO. An empty or punctuation-only line is considered a palindrome.
 
-Time complexity: O(n). Space complexity: O(n), where n is the input length.
+| Input | Output |
+| --- | --- |
+| A man, a plan, a canal: Panama! | YES |
+| hello | NO |
+
+~~~sh
+gcc -std=c11 -Wall -Wextra -pedantic palindrome.c -o palindrome
+printf 'A man, a plan, a canal: Panama!\n' | ./palindrome
+~~~
+
+The input line may contain up to 4,095 characters. The solution runs in O(n) time and O(n) space.
+
+## 3. Binary search — `binary_search.c`
+
+Reads an array length, that many integers in nondecreasing order, and a target integer. Prints the first (zero-based) index of the target, or -1 if it is absent. The program checks that the input array is sorted.
+
+Example input:
+
+~~~text
+6
+-4 0 3 3 8 12
+3
+~~~
+
+Output:
+
+~~~text
+2
+~~~
+
+~~~sh
+gcc -std=c11 -Wall -Wextra -pedantic binary_search.c -o binary_search
+printf '6\n-4 0 3 3 8 12\n3\n' | ./binary_search
+~~~
+
+The array may contain up to 100,000 integers. The solution runs in O(log n) search time and O(1) extra space.
+
+## Requirements
+
+A C11 compiler such as GCC or Clang. Compile each file on its own because each contains a `main` function.
