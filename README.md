@@ -62,3 +62,11 @@ The array may contain up to 100,000 integers. The solution runs in O(log n) sear
 ## Requirements
 
 A C11 compiler such as GCC or Clang. Compile each file on its own because each contains a `main` function.
+
+## Run the checks
+
+The standard-library Python test runner compiles each program with warnings treated as errors, then checks representative and boundary inputs. It requires Python 3 and GCC on `PATH`.
+
+~~~sh
+python -m unittest -v
+~~~
